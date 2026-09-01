@@ -2,7 +2,8 @@ name: Deploy Portfolio to GitHub Pages
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -11,7 +12,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: true
 
 jobs:
@@ -26,6 +27,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
       - name: Install dependencies
         run: npm install
@@ -33,14 +35,16 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Check build output
+      - name: Check dist folder
         run: |
-          echo "=== Build output ==="
+          echo "Current directory:"
+          pwd
+          echo "Files:"
           ls -la
-          echo "=== Directories ==="
-          find . -maxdepth 2 -type d \
-            ! -path './node_modules*' \
-            ! -path './.git*' | sort
+          echo "Dist folder:"
+          ls -la dist
+          echo "Dist contents:"
+          find dist -maxdepth 2 -type f
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -48,7 +52,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: dist
 
   deploy:
     environment:
