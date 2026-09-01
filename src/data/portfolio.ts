@@ -8,7 +8,7 @@ import codealpha from "@/assets/Code_Alpha.jpg.asset.json";
 import zelvora from "@/assets/Zelvora.jpg.asset.json";
 import mahindra from "@/assets/Mahendra_Pride.jpg.asset.json";
 import profileAsset from "@/assets/profile.jpg.asset.json";
-import resumeAsset from "@/assets/resume.pdf.asset.json";
+import resumeAsset from "@/assets/resume.asset.json";
 
 export const profileUrl = profileAsset.url;
 export const resumeUrl = resumeAsset.url;
