@@ -435,9 +435,9 @@ function Portfolio() {
 
       <Lightbox
         open={openIdx !== null}
-        title={openIdx !== null ? certificates[openIdx].title : ""}
-        issuer={openIdx !== null ? certificates[openIdx].issuer : ""}
-        image={openIdx !== null ? certificates[openIdx].image : ""}
+        title={certificates[openIdx ?? 0]?.title ?? ""}
+        issuer={certificates[openIdx ?? 0]?.issuer ?? ""}
+        image={certificates[openIdx ?? 0]?.image ?? ""}
         onClose={() => setOpenIdx(null)}
         onPrev={() =>
           setOpenIdx((i) => (i === null ? i : (i - 1 + certificates.length) % certificates.length))
