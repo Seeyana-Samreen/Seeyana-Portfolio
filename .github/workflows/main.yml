@@ -34,12 +34,10 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Check dist folder
+      - name: Check build output
         run: |
           echo "Checking build output..."
-          ls -la
-          ls -la dist
-          find dist -maxdepth 2 -type f
+          ls -la .output
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -47,7 +45,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./.output
 
   deploy:
     environment:
