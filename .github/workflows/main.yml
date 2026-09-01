@@ -27,7 +27,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
 
       - name: Install dependencies
         run: npm install
@@ -37,13 +36,9 @@ jobs:
 
       - name: Check dist folder
         run: |
-          echo "Current directory:"
-          pwd
-          echo "Files:"
+          echo "Checking build output..."
           ls -la
-          echo "Dist folder:"
           ls -la dist
-          echo "Dist contents:"
           find dist -maxdepth 2 -type f
 
       - name: Setup Pages
@@ -52,7 +47,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: ./dist
 
   deploy:
     environment:
