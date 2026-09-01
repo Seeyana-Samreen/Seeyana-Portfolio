@@ -26,12 +26,22 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
       - name: Install dependencies
         run: npm install
 
       - name: Build
         run: npm run build
+
+      - name: Find build output
+        run: |
+          echo "=== Repository ==="
+          ls -la
+          echo "=== Folders ==="
+          find . -maxdepth 3 -type d \
+            ! -path './node_modules*' \
+            ! -path './.git*' | sort
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
